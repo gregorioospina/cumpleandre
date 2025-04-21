@@ -1,10 +1,39 @@
 "use client";
+import { AnimatePresence } from "motion/react";
 import * as motion from "motion/react-client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import EnteringImg from "./components/entering-img";
+
+const topContent = [
+	"/img/top/after.png",
+	"/img/top/guaro.png",
+	"/img/top/where.png",
+	"/img/top/pre.png",
+	"/img/top/rumba.png",
+	"/img/top/when.png",
+	"/img/top/where.png",
+];
+
+const bottomContent = [
+	"/img/bottom/after.png",
+	"/img/bottom/guaro.png",
+	"/img/bottom/where.png",
+	"/img/bottom/pre.png",
+	"/img/bottom/rumba.png",
+	"/img/bottom/when.png",
+	"/img/bottom/where.png",
+];
 
 export default function Home() {
 	const [showCentralDialog, setShowCentralDialog] = useState<boolean>(false);
+
+	const [selectedIndex, setSelectedIndex] = useState<number>(0);
+
+	useEffect(() => {
+		setInterval(() => {
+			setSelectedIndex(p => );
+		}, 2700);
+	}, []);
 
 	return (
 		<div
@@ -37,27 +66,26 @@ export default function Home() {
 				)}
 				{showCentralDialog && (
 					<div className="flex z-50 rounded-lg bg-cover bg-center bg-[url('/img/jee.JPG')] shadow-2xl fixed w-[80%] max-w-[600px] aspect-square ">
-						<motion.div
-							initial={{ opacity: 0, scale: 0 }}
-							animate={{ opacity: 1, scale: 1 }}
-							transition={{
-								duration: 0.4,
-								scale: { type: "spring", visualDuration: 0.4, bounce: 0.5 },
-							}}>
-							<img className="absolute top-[-50px] right-0" src={"/img/house.png"} height={"80px"} alt="house" />
-						</motion.div>
-						<motion.div
-							initial={{ opacity: 0, scale: 0 }}
-							animate={{ opacity: 1, scale: 1 }}
-							transition={{
-								duration: 0.4,
-								scale: { type: "spring", visualDuration: 0.4, bounce: 0.5 },
-							}}>
-							<img className="absolute bottom-[-50px] left-0" src={"/img/date.png"} height={"80px"} alt="date" />
-						</motion.div>
+						{topContent.map((tc, i) => (
+							<AnimatePresence key={"top" + tc} initial={false}>
+								{selectedIndex === i ? (
+									<motion.div initial={{ opacity: 0, scale: 0 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0 }} key="box">
+										<img className="absolute top-[-50px] right-0" src={tc} height={"80px"} alt="house" />
+									</motion.div>
+								) : null}
+							</AnimatePresence>
+						))}
+						{bottomContent.map((tc, i) => (
+							<AnimatePresence key={"top" + tc} initial={false}>
+								{selectedIndex === i ? (
+									<motion.div initial={{ opacity: 0, scale: 0 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0 }} key="box">
+										<img className="absolute bottom-[-50px] left-0" src={tc} height={"80px"} alt="date" />
+									</motion.div>
+								) : null}
+							</AnimatePresence>
+						))}
 					</div>
 				)}
-				{/* {showCentralDialog && <CentralDialog />} */}
 			</main>
 		</div>
 	);

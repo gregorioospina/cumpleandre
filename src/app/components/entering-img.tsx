@@ -18,8 +18,6 @@ const EnteringImg = ({ on, imgSrc }: IEnteringImg) => {
 		const randomY = Math.random() * numY;
 		const rotation = Math.random() * 180;
 
-		console.log({ randomX, randomY, rotation });
-
 		setRotate(rotation);
 		setX(randomX - 200);
 		setY(randomY);
