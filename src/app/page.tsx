@@ -31,7 +31,11 @@ export default function Home() {
 
 	useEffect(() => {
 		setInterval(() => {
-			setSelectedIndex(p => );
+			setSelectedIndex((p) => {
+				if (p + 1 > topContent.length) {
+					return 0;
+				} else return p + 1;
+			});
 		}, 2700);
 	}, []);
 
@@ -69,14 +73,14 @@ export default function Home() {
 						{topContent.map((tc, i) => (
 							<AnimatePresence key={"top" + tc} initial={false}>
 								{selectedIndex === i ? (
-									<motion.div initial={{ opacity: 0, scale: 0 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0 }} key="box">
+									<motion.div initial={{ opacity: 0, scale: 0 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0 }}>
 										<img className="absolute top-[-50px] right-0" src={tc} height={"80px"} alt="house" />
 									</motion.div>
 								) : null}
 							</AnimatePresence>
 						))}
 						{bottomContent.map((tc, i) => (
-							<AnimatePresence key={"top" + tc} initial={false}>
+							<AnimatePresence key={"bottom" + tc} initial={false}>
 								{selectedIndex === i ? (
 									<motion.div initial={{ opacity: 0, scale: 0 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0 }} key="box">
 										<img className="absolute bottom-[-50px] left-0" src={tc} height={"80px"} alt="date" />
