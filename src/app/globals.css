@@ -1,8 +1,27 @@
 @import "tailwindcss";
 
 
-body {
+/* body {
   background: var(--background);
+} */
+
+body {
   color: var(--foreground);
+  background: linear-gradient(-45deg, #44fb78, #e73c7e, #5223d5, #23d5ab);
+	background-size: 400% 400%;
   font-family: Arial, Helvetica, sans-serif;
+	animation: gradient 15s ease infinite;
+	height: 100vh;
+}
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
 }
